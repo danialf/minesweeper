@@ -1,4 +1,5 @@
 [workspace]
 members = [
-    "ms"
+    "ms",
+    "ms-wasm"
 ]

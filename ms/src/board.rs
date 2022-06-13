@@ -68,7 +68,7 @@ impl Board {
     }
 
     /// toggle flag given position
-    fn toggle_flag(&mut self, position: Position) {
+    pub fn toggle_flag(&mut self, position: Position) {
         match self.get(position) {
             Field::Closed => self.set(position, Field::Flagged),
             Field::Opened(_) => return,
@@ -189,7 +189,7 @@ impl IndexMut<usize> for Board {
 
 #[cfg(test)]
 mod tests {
-    use crate::field::{Field, MineState, Position};
+    use crate::{field::{Field, MineState, Position}, random};
 
     use super::Board;
 
@@ -224,6 +224,25 @@ mod tests {
 
         b.open((3, 3));
         println!("{}", b);
+    }
+
+    #[test]
+    #[ignore = "Just for functionality test"]
+    fn test()
+    {
+        let mut board = Board::new(10,10);
+        let mines = random::random_position_vec(board.get_size(), 10);
+        board.plant_mines(mines);
+
+        let mut opened_vec = vec![];
+
+        for _ in 0..15{
+            opened_vec.push(random::random_position(board.get_size()));
+            board.open(*opened_vec.last().unwrap());
+        }
+
+        println!("{}",board);
+        println!("{:?}", opened_vec);
     }
 
     #[test]

@@ -1,12 +1,5 @@
-mod field;
-mod size;
-mod board;
+pub mod random;
 
-#[cfg(test)]
-mod tests {
-    #[test]
-    fn it_works() {
-        let result = 2 + 2;
-        assert_eq!(result, 4);
-    }
-}
+pub mod field;
+pub mod size;
+pub mod board;
